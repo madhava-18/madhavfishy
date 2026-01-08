@@ -45,7 +45,9 @@ document.body.style.color = random.text;
 </script>
 </body>
 </html>
-2)<!DOCTYPE html>
+
+2)Super simple form
+<!DOCTYPE html>
 <html>
 <head>
 <title>Super Simple Form</title>
@@ -81,7 +83,8 @@ document.getElementById('output').innerHTML =
 }
 </script>
 </body>
-</html>  
+</html>
+
 4)Notification manager
 <!DOCTYPE html>
 <html lang="en">
@@ -125,6 +128,7 @@ fireNotification();
 </script>
 </body>
 </html>
+
 5)shapes
 <!DOCTYPE html>
 <html>
@@ -210,6 +214,7 @@ locElement.textContent = "Geolocation is not supported by your browser.";
 </script>
 </body>
 </html>
+
 7)Basic calculator
 Basic Calculator
 <!DOCTYPE html>
@@ -271,6 +276,7 @@ document.getElementById("result").value = result;
 </script>
 </body>
 </html>
+
 8)message alert app
 <!DOCTYPE html>
 <html>
@@ -295,6 +301,7 @@ document.getElementById("messageInput").value = "";
 </script>
 </body>
 </html>
+
 9)RSS FEED READER
 <!DOCTYPE html>
 <html>
@@ -322,6 +329,7 @@ var discription=$(this).find("discription").text();
 </script>
 </body>
 </html>
+  
 10)simple alarm
 <!DOCTYPE html>
 <html>
@@ -354,6 +362,7 @@ alert("Alarm Ringing!");
 </script>
 </body>
 </html>
+
 11)SEND EMAIL
 <!DOCTYPE html>
 <html>
