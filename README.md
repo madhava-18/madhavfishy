@@ -1,417 +1,393 @@
-1a)bit stuffing
+1)<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Page</title>
+</head>
+<body>
+<h1>My Web Page</h1>
+<p>This is a simple web page. Click the buttons below:</p>
+<!-- Buttons -->
+<button onclick="changeFont()">Change Font</button>
+<button onclick="changeColour()">Change Colour</button>
+<script>
+function changeFont() {
+// Pick a random font
+var fonts = ["Arial"
+,
+"Georgia"
+"Courier New"
+"Verdana"
+,
+,
+,
+"Tahoma"];
+var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+document.body.style.fontFamily = randomFont;
+}
+function changeColour() {
+// Pick a random background/text color
+var colours = [
+{bg: "white"
+, text: "black"},
+{bg: "black"
+, text: "white"},
+{bg: "lightblue"
+, text: "darkblue"},
+{bg: "yellow"
+, text: "darkred"},
+{bg: "gray"
+, text: "white"}
+];
+var random = colours[Math.floor(Math.random() * random.length)];
+document.body.style.backgroundColor = random.bg;
+document.body.style.color = random.text;
+}
+</script>
+</body>
+</html>
+2)<!DOCTYPE html>
+<html>
+<head>
+<title>Super Simple Form</title>
+</head>
+<body>
+<h1>Details Form</h1>
+<label>Name:</label>
+<input type="text" id="nameInput"><br><br>
+<label>Reg.No:</label>
+<input type="number" id="regnoInput"><br><br>
+<label>Dept:</label>
+<select id="deptInput">
+<option>CSE</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>Mech</option>
+<option>Civil</option>
+</select><br><br>
+<button onclick="displayDetails()">Submit</button>
+<div id="output"></div>
+<script>
+function displayDetails() {
+// Get values from the inputs
+var name = document.getElementById('nameInput').value;
+var regno = document.getElementById('regnoInput').value;
+var dept = document.getElementById('deptInput').value;
+// Display the results
+document.getElementById('output').innerHTML =
+'<h2>Submitted:</h2>' +
+'<p>Name: ' + name + '</p>' +
+'<p>Reg.No: ' + regno + '</p>' +
+'<p>Dept: ' + dept + '</p>';
+}
+</script>
+</body>
+</html>  
+4)Notification manager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Short Notifier</title>
+<style>
+/* Condensed CSS */
+body { display: flex; justify-content: center; align-items: center; height: 100vh; font-family:
+sans-serif; background-color: #f0f0f0; }
+.container { display: flex; flex-direction: column; gap: 10px; padding: 2rem; background:
+white; border-radius: 8px; }
+input, button { font-size: 1.2rem; padding: 0.5rem; border-radius: 4px; border: 1px solid
+#ccc; }
+button { background-color: #007bff; color: white; cursor: pointer; border: none; }
+</style>
+</head>
+<body>
+<div class="container">
+<input id="messageText" placeholder="Message">
+<button id="notifyButton">Notify</button>
+</div>
+<script>
+// Shortened JavaScript logic
+document.getElementById('notifyButton').onclick = () => {
+// Defines a function to create the notification
+const fireNotification = () => {
+let text = document.getElementById('messageText').value;
+new Notification("New Notification", { body: text || "You have a new message!" });
+};
+// Checks permission and then fires the notification
+if (Notification.permission === 'granted') {
+fireNotification();
+} else if (Notification.permission !== 'denied') {
+Notification.requestPermission().then(permission => {
+if (permission === 'granted') {
+fireNotification();
+}
+});
+}
+};
+</script>
+</body>
+</html>
+5)shapes
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shapes</title>
+<style>
+body {
+text-align: center;
+}
+.shape-container {
+width: 100px;
+height: 100px;
+margin: 20px;
+border: 1px solid black;
+display: inline-block;
+}
+.circle {
+border-radius: 50%;
+}
+.square {
+}
+.triangle {
+width: 0;
+height: 0;
+border-left: 50px solid transparent;
+border-right: 50px solid transparent;
+border-bottom: 100px solid blue;
+}
+</style>
+</head>
+<body>
+<h1>Shapes</h1>
+<div class="shape-container circle"></div>
+<div class="shape-container square"></div>
+<div class="shape-container triangle"></div>
+</body>
+</html>
+
+6)GPS Location
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>GPS Short</title>
+<style>
+/* Condensed CSS */
+body { display: flex; justify-content: center; align-items: center; height: 100vh; font-family:
+sans-serif; text-align: center; }
+button { font-size: 1.2rem; padding: 0.8rem 1.5rem; cursor: pointer; border-radius: 5px;
+border: none; background: #28a745; color: white; }
+p { font-size: 1.1rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+<div>
+<button onclick="getLocation()">Retrieve Location</button>
+<p id="loc">Your location will be shown here.</p>
+</div>
+<script>
+// Shortened JavaScript logic
+function getLocation() {
+const locElement = document.getElementById('loc');
+// Define success and error handlers as arrow functions
+const success = (pos) => {
+const { latitude, longitude } = pos.coords;
+locElement.innerHTML = `Latitude: ${latitude.toFixed(4)} <br> Longitude:
+${longitude.toFixed(4)}`;
+};
+const error = (err) => {
+const errorMessages = {
+1: "Permission denied.",
+2: "Position unavailable.",
+3: "Request timed out."
+};
+locElement.textContent = errorMessages[err.code] || "An unknown error occurred.";
+};
+// Check for geolocation support and request the position
+if ('geolocation' in navigator) {
+navigator.geolocation.getCurrentPosition(success, error);
+} else {
+locElement.textContent = "Geolocation is not supported by your browser.";
+}
+}
+</script>
+</body>
+</html>
+7)Basic calculator
+Basic Calculator
+<!DOCTYPE html>
+<html>
+<head>
+<title>Basic Calculator</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+}
+input[type="text"] {
+width: 150px;
+padding: 10px;
+margin: 5px;
+}
+input[type="button"] {
+width: 50px;
+padding: 10px;
+margin: 5px;
+}
+</style>
+</head>
+<body>
+<h1>Basic Calculator</h1>
+<input type="text" id="result" readonly>
+<br>
+<input type="button" value="1" onclick="display('1')">
+<input type="button" value="2" onclick="display('2')">
+<input type="button" value="3" onclick="display('3')">
+<input type="button" value="+" onclick="display('+')">
+<br>
+<input type="button" value="4" onclick="display('4')">
+<input type="button" value="5" onclick="display('5')">
+<input type="button" value="6" onclick="display('6')">
+<input type="button" value="-" onclick="display('-')">
+<br>
+<input type="button" value="7" onclick="display('7')">
+<input type="button" value="8" onclick="display('8')">
+<input type="button" value="9" onclick="display('9')">
+<input type="button" value="*" onclick="display('*')">
+<br>
+<input type="button" value="C" onclick="clearResult()">
+<input type="button" value="0" onclick="display('0')">
+<input type="button" value="=" onclick="calculate()">
+<input type="button" value="/" onclick="display('/')">
+<script>
+function display(value) {
+document.getElementById("result").value += value;
+}
+function clearResult() {
+document.getElementById("result").value = "";
+}
+function calculate() {
+let expression = document.getElementById("result").value;
+let result = eval(expression);
+document.getElementById("result").value = result;
+}
+</script>
+</body>
+</html>
+8)message alert app
+<!DOCTYPE html>
+<html>
+<head>
+<title>Message Alert APP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h2>Message Alert Application</h2>
+<input type="text" id="messageInput" placeholder="Type a message here">
+<button onclick="receive_message()">Send message</button>
+<script>
+function receive_message() {
+var message = document.getElementById("messageInput").value;
+if (message.trim() === "") {
+alert("Please Enter a Message Before Sending");
+} else {
+alert("New message received: " + message);
+document.getElementById("messageInput").value = "";
+}
+}
+</script>
+</body>
+</html>
+9)RSS FEED READER
+<!DOCTYPE html>
+<html>
+<head>
+<title>RSS Feed Reader</title>
+<metaname="viewport"content="width=device-width=device width;initial-scale=1.0">
+</head>
+<body>
+<h1>RSS Feed Reader</h1>
+<ulid="feed"></ul>
+<script src="https:||ajax.googleapis.coom/ajax/libs/jquery/3.6.01 jquerymin.js")
+</script>
+<script>$(document)ready(function)
+{
+$ajax
+{
+url:https:||feeds feed burner.com|Tech crunch||
+Replace with your desired RSS feed URL
+data Type:"xml"
+success:function(xml){$(xml).find("item").each(function)
+{
+var title=$(this).find("title").text();
+var link=$(this).find("link").text();
+var discription=$(this).find("discription").text();
+</script>
+</body>
+</html>
+10)simple alarm
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Alarm</title>
+</head>
+<body>
+<h2>Simple Alarm Application</h2>
+<label>Select Alarm Time: </label>
+<input type="time" id="alarmTime">
+<button onclick="setAlarm()">Set Alarm</button>
+<p id="status"></p>
+<script>
+var alarmTime = null;
+function setAlarm() {
+alarmTime = document.getElementById("alarmTime").value;
+document.getElementById("status").innerHTML = "Alarm set for " + alarmTime;
+checkAlarm();
+}
+function checkAlarm() {
+setInterval(function() {
+var now = new Date();
+var currentTime = now.getHours().toString().padStart(2,'0') + ":" +
+now.getMinutes().toString().padStart(2,'0');
+if (alarmTime === currentTime) {
+alert("Alarm Ringing!");
+}
+}, 1000);
+}
+</script>
+</body>
+</html>
+11)SEND EMAIL
+<!DOCTYPE html>
+<html>
+<head>
+<title>Send Email</title>
+</head>
+<body>
+<h1>Send Email</h1>
+<form>
+<label for="email">To:</label><br>
+<input type="email" id="email" name="email" required><br><br>
+<label for="subject">Subject:</label><br>
+<input type="text" id="subject" name="subject" required><br><br>
+<label for="message">Message:</label><br>
+<textarea id="message" name="message" rows="4" required></textarea><br><br>
+<button type="submit">Send Email</button>
+</form>
+<script>
+function submitForm() {
+var toEmail = document.getElementById("email").value;
+var subject = document.getElementById("subject").value;
+var message = document.getElementById("message").value;
+var mailtoUrl = "mailto:" + toEmail + "?subject=" + encodeURIComponent(subject) +
+"&body=" + encodeURIComponent(message);
+window.location.href = mailtoUrl;
+}
+document.querySelector('form').addEventListener('submit'
+, function(event) {
+event.preventDefault();
+submitForm();
+});
+</script>
+</body>
+</html>
 
-def bit_stuffing(N, arr):
-    brr = []  # Output array after bit stuffing
-    count = 0
 
-    for i in range(N):
-        brr.append(arr[i])
-        if arr[i] == 1:
-            count += 1
-        else:
-            count = 0
 
-        # After 5 consecutive 1's, insert a 0
-        if count == 5:
-            brr.append(0)
-            count = 0
-
-    # Print the stuffed bits
-    print("After Bit Stuffing:")
-    print(" ".join(map(str, brr)))
-
-
-# ✅ Main section
-if __name__ == "__main__":
-    N = 6
-    arr = [1, 1, 1, 1, 1, 1]  # Example input
-    print("Original Data:")
-    print(" ".join(map(str, arr)))
-    bit_stuffing(N, arr)
-
-1b)character stuffing
-
-def characters_stuffing(data, flag='F', escape='E'):
-    stuffed_data = ''
-    for ch in data:
-        if ch == flag or ch == escape:
-            stuffed_data += escape + ch
-        else:
-            stuffed_data += ch
-    return flag + stuffed_data + flag
-
-data = "HelloF EwogE!"
-stuffed_data = characters_stuffing(data)
-print("Original data:", data)
-print("Stuffed data:", stuffed_data)
-
-2a)crc code
-def crc_encode():
-    Polynomial = input("Enter polynomial: ")
-    frame = input("Enter the frame: ")
-    m = len(Polynomial)
-    n = len(frame)
-
-    for i in range(m):
-        if Polynomial[i] == '1':
-            Polynomial = Polynomial[i:]
-            m = len(Polynomial)
-            break
-
-    Polynomial = list(Polynomial)
-    cl = m + n - 1
-    c = list(frame) + ['0'] * (cl - n)
-
-    for i in range(n):
-        if c[i] == '1':
-            for j in range(m):
-                c[i + j] = '0' if Polynomial[j] == c[i + j] else '1'
-
-    c[:n] = frame
-    message = ''.join(c)
-    print(f"The message is: {message}")
-
-crc_encode()
-
-2b)crc-12,crc-16,ccit
-def compute_crc(data: str, poly: int, width: int, init_crc: int = 0) -> int:
-    data_int = int(data, 2) << (width - 1)
-    mask = 1 << (data_int.bit_length() - 1)
-
-    while mask >= (1 << (width - 1)):
-        if data_int & mask:
-            data_int ^= poly << (data_int.bit_length() - width)
-        mask >>= 1
-
-    return data_int
-
-def format_crc(crc: int, width: int) -> str:
-    return format(crc, '0{}b'.format(width))
-
-def main():
-    binary_data = input("Enter binary data: ")
-
-    # CRC-12
-    poly_12 = 0x80F
-    crc12 = compute_crc(binary_data, poly_12, 12)
-    print(f"CRC-12     : {format_crc(crc12, 12)}")
-
-    # CRC-16
-    poly_16 = 0x8005
-    crc16 = compute_crc(binary_data, poly_16, 16)
-    print(f"CRC-16     : {format_crc(crc16, 16)}")
-
-    # CRC-CCITT
-    poly_ccitt = 0x1021
-    crc_ccitt = compute_crc(binary_data, poly_ccitt, 16)
-    print(f"CRC-CCITT  : {format_crc(crc_ccitt, 16)}")
-
-if __name__ == "__main__":
-    main()
-
-
-3)gobackn
-
-import threading
-import time
-import random
-
-class GoBackN:
-    def __init__(self, window_size, total_frames):  # ✅ fixed __init__
-        self.window_size = window_size
-        self.total_frames = total_frames
-        self.sent_frames = 0
-        self.acknowledged_frames = 0
-        self.lock = threading.Lock()
-
-    def send_frame(self, frame):
-        print(f"Sender: Sending frame {frame}")
-
-    def receive_ack(self, frame):
-        print(f"Receiver: Acknowledgment received for frame {frame}")
-
-    def transmit(self):
-        while self.acknowledged_frames < self.total_frames:
-            with self.lock:
-                # Send frames within the window
-                while self.sent_frames < min(self.acknowledged_frames + self.window_size, self.total_frames):
-                    self.send_frame(self.sent_frames)
-                    self.sent_frames += 1
-
-            time.sleep(1)  # Simulate transmission delay
-
-            with self.lock:
-                for frame in range(self.acknowledged_frames, self.sent_frames):
-                    # Randomly simulate success or failure
-                    if random.randint(0, 2) > 0:
-                        self.receive_ack(frame)
-                        self.acknowledged_frames += 1
-                    else:
-                        print(f"Receiver: Frame {frame} lost ❌, retransmitting from frame {frame}")
-                        self.sent_frames = self.acknowledged_frames
-                        break
-
-        print("✅ All frames acknowledged!")
-
-
-def main():
-    window_size = 4
-    total_frames = 10
-    gbn = GoBackN(window_size, total_frames)
-
-    sender_thread = threading.Thread(target=gbn.transmit)
-    sender_thread.start()
-    sender_thread.join()
-
-    print("\nTransmission complete ✅")
-
-
-# ✅ Correct main check
-if __name__ == "__main__":
-    main()
-
-
-4).Dijkstra’s Algorithm
-import sys
-
-class Graph:
-    def __init__(self, vertices):  # ✅ fixed __init__
-        self.u = vertices
-        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
-
-    def printSolution(self, dist):
-        print("Vertex \t Distance from Source")
-        for node in range(self.u):
-            print(node, "\t", dist[node])
-
-    def minDistance(self, dist, sptSet):
-        min_val = sys.maxsize
-        min_index = -1
-        for u in range(self.u):
-            if dist[u] < min_val and sptSet[u] == False:
-                min_val = dist[u]
-                min_index = u
-        return min_index
-
-    def dijkstra(self, src):
-        dist = [sys.maxsize] * self.u
-        dist[src] = 0
-        sptSet = [False] * self.u
-
-        for _ in range(self.u):
-            x = self.minDistance(dist, sptSet)
-            sptSet[x] = True
-
-            for y in range(self.u):
-                if self.graph[x][y] > 0 and not sptSet[y] and dist[y] > dist[x] + self.graph[x][y]:
-                    dist[y] = dist[x] + self.graph[x][y]
-
-        self.printSolution(dist)
-
-
-if __name__ == "__main__":  # ✅ fixed __name__
-    g = Graph(9)
-    g.graph = [
-        [0, 4, 0, 0, 0, 0, 0, 8, 0],
-        [4, 0, 8, 0, 0, 0, 0, 11, 0],
-        [0, 8, 0, 7, 0, 4, 0, 0, 2],
-        [0, 0, 7, 0, 9, 14, 0, 0, 0],
-        [0, 0, 0, 9, 0, 10, 0, 0, 0],
-        [0, 0, 4, 14, 10, 0, 2, 0, 0],
-        [0, 0, 0, 0, 0, 2, 0, 1, 6],
-        [8, 11, 0, 0, 0, 0, 1, 0, 7],
-        [0, 0, 2, 0, 0, 0, 6, 7, 0]
-    ]
-    g.dijkstra(0)
-
-
-5)subnet nodes
-
-def main():
-    n = int(input("Enter the number of nodes: "))
-    adjacency_matrix = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
-
-    print("Enter adjacency matrix values (0 or 1 for each pair):")
-    for i in range(1, n + 1):
-        for j in range(1, n + 1):
-            adjacency_matrix[i][j] = int(input(f"Enter connection between node {i} and node {j} (0 or 1): "))
-
-    root = int(input("Enter the root node: "))
-    print(f"Adjacent nodes of root node {root}:")
-
-    for j in range(1, n + 1):
-        if adjacency_matrix[root][j] == 1:
-            print(j, end=" ")
-    print("\n")
-
-
-if __name__ == "__main__":  # ✅ Fixed
-    main()
-
-
-6)distance vector routing algorithm
-
-print("Distance Vector Routing Algorithm\n")
-
-# Number of nodes
-n = int(input("Enter number of nodes: "))
-
-print("Enter cost matrix (use a large number like 999 for infinity):")
-cost = []
-for i in range(n):
-    row = list(map(int, input().split()))
-    cost.append(row)
-
-# Initialize distance matrix
-dist = [row[:] for row in cost]
-
-# Distance Vector Algorithm
-for it in range(1, n):
-    print(f"\nIteration {it}:")
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                if dist[i][j] > dist[i][k] + dist[k][j]:
-                    dist[i][j] = dist[i][k] + dist[k][j]
-
-        print(f"Routing table for node {i}: {dist[i]}")
-
-# Final routing tables
-print("\nFinal Routing Tables:")
-for i in range(n):
-    print(f"Node {i}: {dist[i]}")
-
-
-
-7)encryption and decreption
-
-from cryptography.fernet import Fernet
-# Step 1: Generate a key for encryption and decryption
-key = Fernet.generate_key()
-cipher = Fernet(key)
-# Step 2: Take input from user
-data = input("Enter text to encrypt: ").encode()  # convert string to bytes
-# Step 3: Encrypt the data
-encrypted_data = cipher.encrypt(data)
-print("\nEncrypted text:", encrypted_data.decode())
-# Step 4: Decrypt the data
-decrypted_data = cipher.decrypt(encrypted_data)
-print("Decrypted text:", decrypted_data.decode())
-# Step 5: Display the key
-print("\nKeep this secret key safe if you want to decrypt later:")
-print(key.decode())
-
-
-8)leaky bucket 
-
-# Leaky Bucket Algorithm
-
-bucket_size = int(input("Bucket size: "))
-output_rate = int(input("Output rate: "))
-n = int(input("No. of packets: "))
-
-bucket = 0
-
-for i in range(n):
-    incoming = int(input(f"Packet {i+1} size: "))
-
-    # Check overflow
-    if bucket + incoming > bucket_size:
-        print("Packet dropped!")
-    else:
-        bucket += incoming
-
-    # Leak packets
-    if bucket >= output_rate:
-        bucket -= output_rate
-    else:
-        bucket = 0 def __init__(self, seq, pages, idx):  # ✅ Fixed constructor name
-        self.seq = seq
-        self.pages = pages
-        self.idx = idx
-
-
-def input_frames():
-    n = int(input("Enter number of frames: "))
-    frames = []
-    for i in range(n):
-        seq = int(input(f"\nEnter sequence number for frame {i + 1}: "))
-        pages = list(map(int, input("Enter pages separated by space: ").split()))
-        frames.append(Frame(seq, pages, i))
-
-    # Sort frames by sequence number for correct transmission order
-    frames.sort(key=lambda x: x.seq)
-    return frames
-class Frame:
-   
-
-def round_robin(frames, q):
-
-    done = False
-    idx = [0 for _ in range(len(frames))]  # Track how many pages are sent per frame
-    print("\n=== Round Robin Output ===")
-
-    while not done:
-        done = True  # Assume done unless we find a frame still transmitting
-        for i in range(len(frames)):
-            cnt = 0
-            while cnt < q and idx[i] < len(frames[i].pages):
-                print(f"Frame: {frames[i].seq}, Page Content: {frames[i].pages[idx[i]]}")
-                idx[i] += 1
-                cnt += 1
-                done = False  # Still transmitting
-        if all(idx[i] == len(frames[i].pages) for i in range(len(frames))):            break
-
-
-if __name__ == "__main__":  # ✅ Fixed main condition
-    frames = input_frames()
-    quantum = int(input("\nEnter quantum: "))
-    round_robin(frames, quantum)
-
-
-    print("Bucket now:", bucket)
-
-
-9)buffers
- def __init__(self, seq, pages, idx):  # ✅ Fixed constructor name
-        self.seq = seq
-        self.pages = pages
-        self.idx = idx
-
-
-def input_frames():
-    n = int(input("Enter number of frames: "))
-    frames = []
-    for i in range(n):
-        seq = int(input(f"\nEnter sequence number for frame {i + 1}: "))
-        pages = list(map(int, input("Enter pages separated by space: ").split()))
-        frames.append(Frame(seq, pages, i))
-
-    # Sort frames by sequence number for correct transmission order
-    frames.sort(key=lambda x: x.seq)
-    return frames
-class Frame:
-   
-
-def round_robin(frames, q):
-
-    done = False
-    idx = [0 for _ in range(len(frames))]  # Track how many pages are sent per frame
-    print("\n=== Round Robin Output ===")
-
-    while not done:
-        done = True  # Assume done unless we find a frame still transmitting
-        for i in range(len(frames)):
-            cnt = 0
-            while cnt < q and idx[i] < len(frames[i].pages):
-                print(f"Frame: {frames[i].seq}, Page Content: {frames[i].pages[idx[i]]}")
-                idx[i] += 1
-                cnt += 1
-                done = False  # Still transmitting
-        if all(idx[i] == len(frames[i].pages) for i in range(len(frames))):            break
-
-
-if __name__ == "__main__":  # ✅ Fixed main condition
-    frames = input_frames()
-    quantum = int(input("\nEnter quantum: "))
-    round_robin(frames, quantum)
